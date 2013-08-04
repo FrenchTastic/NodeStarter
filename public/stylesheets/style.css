@@ -1,8 +1,113 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding-top: 70px;
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	background-color:#E3E2DC;
+}
+
+.navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus
+{
+	color:white;
+}
+
+.navbar-nav > li > a
+{
+	color:white;
+}
+
+.navbar-nav > .active > a,.navbar-nav > .active > a:hover
+{
+	background-color:#405162; 
+}
+
+.navbar
+{
+	background-color:#475B6F; 
 }
 
 a {
   color: #00B7FF;
+}
+
+.divBorder
+{
+
+	border:1px solid #dadada;
+-moz-box-shadow: 3px 3px 8px 0px #656565;
+-webkit-box-shadow: 3px 3px 8px 0px #656565;
+-o-box-shadow: 3px 3px 8px 0px #656565;
+box-shadow: 3px 3px 8px 0px #656565;
+filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=135, Strength=8);
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+border-radius: 3px;
+}
+
+.divBorder.extend
+{
+	background-color: #FFFEF2
+}
+
+.navbar-brand 
+{
+	/*color:#F9F331;
+	color:white;
+	text-shadow: 0 1px 0 #ccc, 
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);*/
+							 color: rgba(0,0,0,0.6);
+    text-shadow: 2px 2px 4px rgba(255,255,255,0.1);
+}
+
+/*==================================================
+ * Effect 2
+ * ===============================================*/
+.box
+{
+  position: relative;
+	background:#FFF;
+}
+.box:before, .box:after
+{
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 15px;
+  left: 10px;
+  width: 50%;
+  top: 80%;
+  max-width:300px;
+  background: #777;
+  -webkit-box-shadow: 0 15px 10px #777;
+  -moz-box-shadow: 0 15px 10px #777;
+  box-shadow: 0 15px 10px #777;
+  -webkit-transform: rotate(-3deg);
+  -moz-transform: rotate(-3deg);
+  -o-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+}
+.box:after
+{
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+  right: 10px;
+  left: auto;
+}
+
+.fine
+{
+	margin:5px 0;
 }

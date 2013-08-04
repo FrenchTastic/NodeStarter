@@ -1,6 +1,9 @@
 extends layout
-
 block content
-	.container
-		h1= title
-		p Welcome to #{title}
+  title= title
+  div(ng-view)
+
+  script(src='/javascripts/app.js')
+  script(src='/javascripts/controllers.js')
+  script(src='/javascripts/angular-strap.min.js')
+  script(src='/javascripts/bootstrap.js')

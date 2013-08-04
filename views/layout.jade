@@ -1,18 +1,24 @@
 doctype 5
-html(ng-app)
-	head
-		title= title
-		link(rel='stylesheet', href='/stylesheets/style.css')
-		link(rel='stylesheet', href='/stylesheets/bootstrap.css')
-		script(src='http://code.jquery.com/jquery-2.0.3.min.js')
-		script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js')
-		script(src='/javascripts/bootstrap.js')
-	body
-		.navbar.navbar-fixed-top
-			.container(style='width:auto;')
-				ul.nav.navbar-nav
-					li.active
-						a(href='#') Home
-					li
-						a(href='#') Link
-		block content
+html(ng-app='nodestarter')
+  head
+    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap-glyphicons.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='http://code.jquery.com/jquery-2.0.3.min.js'))
+    script(src='/javascripts/angular.min.js')
+  body
+    .navbar.navbar-fixed-top(bs-navbar)
+      .container
+        button.navbar-toggle(type='button',data-toggle='collapse',data-target='.navbar-responsive-collapse')
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a.navbar-brand(href='#') FrenchTastic
+        .nav-collapse.collapse.navbar-responsive-collapse(style='height: auto;')
+          ul.nav.navbar-nav
+            li.active(data-match-route='/')
+              a(href='/') Home
+            li(data-match-route='/otherPage')
+              a(href='#/otherPage') Link
+          a.pull-right.btn.btn-danger.navbar-btn(href='/auth/google') Sign In
+    block content
