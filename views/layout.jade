@@ -20,5 +20,10 @@ html(ng-app='nodestarter')
               a(href='/') Home
             li(data-match-route='/otherPage')
               a(href='#/otherPage') Link
-          a.pull-right.btn.btn-danger.navbar-btn(href='/auth/google') Sign In
+          if !user
+            a.pull-right.btn.btn-danger.navbar-btn(href='/auth/google') Sign In
+          else
+            ul.nav.navbar-nav.pull-right
+              li
+                a(href='#') Bonjour, Jean-Louis David
     block content

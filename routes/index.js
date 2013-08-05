@@ -4,13 +4,13 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Express', user: req.user });
 };
 
 
 exports.connected = function(req, res){
   console.log("Banane et steak " + req.user.provider)
-  res.render('index', { title: 'Coicoin' });
+  res.render('index', { title: 'Coicoin', user: req.user });
 };
 
 exports.partials = function (req, res) {
