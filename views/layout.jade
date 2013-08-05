@@ -21,10 +21,10 @@ html(ng-app='nodestarter')
             li(data-match-route='/otherPage')
               a(href='#/otherPage') Link
           if !user
-            .pull-right.btn-danger(style='width:280px;height:42px;border-radius:5px;margin-top:4px;border:2px dashed #932927')
+            .pull-right(style='width:280px;height:42px;border-radius:5px;margin-top:4px;border:2px dashed #932927;background-color:#D43F3A;')
               div(style='font-size:16px;margin-top:11px;margin-left:4px;color:white;float:left;') Sign In :
-              .pull-right.btn.btn-success(data-toggle='modal', href='#myModal', style='margin-right:4px;') Modal GO
-              .pull-right.btn.btn-success(data-toggle='modal', href='/auth/google', style='margin-right:4px;') Google
+              a.pull-right.btn.btn-success(data-toggle='modal', href='#myModal', style='margin-right:4px;') Modal GO
+              a.pull-right.btn.btn-success(data-toggle='modal', href='/auth/google', style='margin-right:4px;') Google
             // a.pull-right.btn.btn-primary.navbar-btn(data-toggle='modal', href='#myModal') Modal GO
             // a.pull-right.btn.btn-danger.navbar-btn(href='/auth/google') Sign In
           else
