@@ -16,13 +16,11 @@
             // data('match-route') does not work with dynamic attributes
             pattern = $li.attr('data-match-route'),
             regexp = new RegExp('^' + pattern + '$', ['i']);
-
           if(regexp.test(newValue)) {
             $li.addClass('active').find('.collapse.in').collapse('hide');
           } else {
             $li.removeClass('active');
           }
-
         });
       });
     }
