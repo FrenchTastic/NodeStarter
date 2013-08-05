@@ -2,6 +2,14 @@ extends layout
 block content
   title= title
   div(ng-view)
+  .modal.fade#myModal
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal',aria-hidden='true')&times;
+          h4.modal-title Titre Modale
+        .modal-body
+          p Banane et steacks
   script(src='/javascripts/angApp.js')
   script(src='/javascripts/controllers.js')
   script(src='/javascripts/angular-strap.min.js')
