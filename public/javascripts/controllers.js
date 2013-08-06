@@ -4,6 +4,10 @@
 	{
 		$scope.title = $scope.steack;
 	};
+	
+	$scope.edit = function(){
+		
+	};
 }
 
 function OtherCtrl($scope) {

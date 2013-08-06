@@ -13,4 +13,6 @@ myModule.config(['$routeProvider', function($routeProvider) {
 				templateUrl: 'auth/google', 
 				controller: GoogleAuthCtrl
 			}).otherwise({redirectTo: '/'});
+			
+			
 }]);
