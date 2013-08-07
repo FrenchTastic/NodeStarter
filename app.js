@@ -12,8 +12,8 @@ var express = require('express')
     , path = require('path');
 
 var app = express();
-var GOOGLE_CLIENT_ID = "YOURCLIENTID";
-var GOOGLE_CLIENT_SECRET ="YOURCLIENTSECRET";
+var GOOGLE_CLIENT_ID = "8924027339-fku1sdbfbar7va5m5ohn7v7mh3717i9k.apps.googleusercontent.com";
+var GOOGLE_CLIENT_SECRET ="u4j_eY6vPtu0fBAifX0Ky28o";
 
 passport.deserializeUser(function(obj, done) {
     done(null, obj);
@@ -26,7 +26,7 @@ passport.serializeUser(function(user, done) {
 passport.use(new GoogleStrategy({
         clientID: GOOGLE_CLIENT_ID,
         clientSecret: GOOGLE_CLIENT_SECRET,
-        callbackURL: "/auth/google/callback",
+        callbackURL: "http://nodestarter.pardon.c9.io/auth/google/callback",
         scope: ['openid', 'email', 'profile']
     },
     function(accessToken, refreshToken, profile, done) {
@@ -67,16 +67,13 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-// app.get('/auth/google', routes.merde);
 app.get('/partials/:name', routes.partials);
 app.get('/users', user.list);
 app.get('/api/someJson', api.get);
 app.get('/connected', routes.connected);
 
-app.get('/auth/google',
-    passport.authenticate('google'),
-    function(req, res){
-    });
+app.get('/auth/google',passport.authenticate('google'));
+app.post('/api/tweet',api.postTweet);
 
 
 app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/partials/test' }),
