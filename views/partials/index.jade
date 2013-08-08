@@ -1,6 +1,6 @@
-.container
+﻿.container
 	.row
-		.col-12.col-sm-7.col-lg-7.box
+		.col-12.col-sm-7.col-lg-7.box(style='margin-bottom:40px;')
 			h2 Node Starter
 			p Welcome to {{title}}
 			input(type='text', ng-change='changeText()', ng-model='steack',style='margin-bottom:20px;')
@@ -12,4 +12,11 @@
 			blockquote.pull-right
 				p I don't give a shit about your Website
 				small A fucking bastard
-				
+	.row
+		.col-12.col-sm-7.col-lg-7.box.divHeader
+			h3 Les Orages Mécaniques
+			hr.fineLine
+			div.divContent
+				p Welcome to {{title}}
+				input(type='text', ng-change='changeText()', ng-model='steack',style='margin-bottom:20px;')
+					

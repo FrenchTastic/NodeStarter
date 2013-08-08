@@ -9,11 +9,19 @@ var express = require('express')
     , passport = require("passport")
     , http = require('http')
     , GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
+    , mongoose = require('mongoose')
     , path = require('path');
 
 var app = express();
 var GOOGLE_CLIENT_ID = "8924027339-fku1sdbfbar7va5m5ohn7v7mh3717i9k.apps.googleusercontent.com";
 var GOOGLE_CLIENT_SECRET ="u4j_eY6vPtu0fBAifX0Ky28o";
+mongoose.connect('mongodb://localhost');
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function callback() {
+    console.log('Connecté à MongoDb');
+});
 
 passport.deserializeUser(function(obj, done) {
     done(null, obj);

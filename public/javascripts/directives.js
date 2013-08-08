@@ -11,6 +11,7 @@ myModule.directive('editTweet', function() {
 			element.find('input').blur(function(){
 				scope.$apply(function(){
 					scope.editMode = false;
+					element.find('input').val("");
 					$('#tweetModal').modal('show');
 				});
 			});

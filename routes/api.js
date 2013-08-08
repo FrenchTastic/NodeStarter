@@ -9,13 +9,44 @@ var data = [
     }
   ];
 
+var mongoose = require('mongoose');
+var kittySchema = mongoose.Schema({
+	name: String
+});
+kittySchema.methods.speak = function () {
+	var greeting = this.name
+		? "Meow name is " + this.name
+		: "I don't have a name";
+	console.log(greeting);
+}
+var Kitten = mongoose.model('Kitten', kittySchema);
+
 exports.get = function (req, res) {
   res.json(data);
 };
 
 exports.postTweet = function (req, res) {
-	if(req.user !== undefined)
+	if(req.user == undefined)
 	{
+		
+		var fluffy = new Kitten({ name: 'poulet' });
+		fluffy.save(function (err, fluffy) {
+			if (err)
+			{
+				console.log('error');
+			}
+			else
+			{
+				fluffy.speak();
+				Kitten.find(function (err, kittens) {
+					console.log(kittens)
+				});
+				Kitten.find({ name: /^fluff/ }, function (err, docs) {
+					console.log(docs);
+				});
+			}
+			
+		});
 		res.json({'msg':'Daily Tweet envoyé pour approbation.'})
 	}
 	else
