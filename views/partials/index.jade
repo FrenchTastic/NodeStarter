@@ -19,4 +19,12 @@
 			div.divContent
 				p Welcome to {{title}}
 				input(type='text', ng-change='changeText()', ng-model='steack',style='margin-bottom:20px;')
+				table
+					tr(ng-repeat='article in articles')
+						td {{article.title}}
+						td {{article.text}}
+						td(ng-repeat='image in article.images')
+							img.img-responsive(ng-src='{{image}}', alt='Responsive image')
+		div(data-rp-article='articles')
+	.notifications.top-right
 					

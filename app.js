@@ -78,6 +78,7 @@ app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
 app.get('/users', user.list);
 app.get('/api/someJson', api.get);
+app.get('/api/articles', api.articles);
 app.get('/connected', routes.connected);
 
 app.get('/auth/google',passport.authenticate('google'));
