@@ -13,8 +13,8 @@ var express = require('express')
     , path = require('path');
 
 var app = express();
-var GOOGLE_CLIENT_ID = "8924027339-fku1sdbfbar7va5m5ohn7v7mh3717i9k.apps.googleusercontent.com";
-var GOOGLE_CLIENT_SECRET ="u4j_eY6vPtu0fBAifX0Ky28o";
+var GOOGLE_CLIENT_ID = "YOURCLIENTID";
+var GOOGLE_CLIENT_SECRET ="TOURSECRET";
 mongoose.connect('mongodb://localhost');
 
 var db = mongoose.connection;
@@ -23,18 +23,66 @@ db.once('open', function callback() {
     console.log('Connecté à MongoDb');
 });
 
+var userSchema = mongoose.Schema({
+	id: String,
+	firstname: String,
+	lastname : String,
+	email : String,
+	displayname : String,
+	provider: String
+});
+
+userSchema.methods.findOrCreate = function(cb){
+	var user = this;
+	user.model('User').find({ id: this.id, provider: this.provider }, function (err, users){
+		if(users.length == 0)
+		{
+			user.save(function(err, user){
+				console.log('Utilisateur créé');
+				return cb(null, user);
+			});
+		} else
+		{
+			console.log('Utilisateur retourné');
+			return cb(null, users[0]);
+		}
+		//user.model('User').find(user, cb);
+	});
+}
+
+var User = mongoose.model('User', userSchema);
+
 passport.deserializeUser(function(obj, done) {
     done(null, obj);
 });
 
 passport.serializeUser(function(user, done) {
+	var  mongoUser = new User ({
+		id: user.id,
+		firstname: user.name.givenName,
+		email: user.emails[0],
+		lastname: user.name.familyName,
+		displayname: user.displayName,
+		provider: user.provider
+	});
+	
+	mongoUser.findOrCreate(function(err, user){
+		if(err)
+		{
+			console.log(err);
+		}
+		console.log(user.displayname + " a été trouvé");
+	});
+	// mongoUser.save(function(err, mongoUser){
+		// console.log('Utilisateur sauvegardé');
+	// });
     done(null, user);
 });
 
 passport.use(new GoogleStrategy({
         clientID: GOOGLE_CLIENT_ID,
         clientSecret: GOOGLE_CLIENT_SECRET,
-        callbackURL: "http://nodestarter.pardon.c9.io/auth/google/callback",
+        callbackURL: "http://localhost:3000/auth/google/callback",
         scope: ['openid', 'email', 'profile']
     },
     function(accessToken, refreshToken, profile, done) {
