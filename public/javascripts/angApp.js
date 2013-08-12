@@ -2,8 +2,6 @@
 
 var myModule = angular.module('nodestarter', ['$strap.directives']);
 
-
-	
 myModule.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.when('/otherPage', { 
 				templateUrl: 'partials/other', 
@@ -15,6 +13,4 @@ myModule.config(['$routeProvider', function($routeProvider) {
 				templateUrl: 'auth/google', 
 				controller: 'GoogleAuthCtrl'
 			}).otherwise({redirectTo: '/'});
-			
-			
 }]);

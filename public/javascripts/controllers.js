@@ -1,3 +1,7 @@
+myModule.factory('serviceId', function() { 
+	return 4;
+});
+
 myModule.controller('IndexCtrl', ['$scope','$http', function($scope,$http) {
     $scope.title = "Les nénuphars sont mes amis";
 		
@@ -14,6 +18,10 @@ myModule.controller('IndexCtrl', ['$scope','$http', function($scope,$http) {
 		$scope.edit = function(){
 			
 		};
+		
+	$scope.sendTweet = function(e){
+		$scope.tweetMode = false;
+	};
 	
 	$scope.tweetSubmit = function(e){
 		//$(e.target).closest('.modal').
@@ -27,7 +35,6 @@ myModule.controller('IndexCtrl', ['$scope','$http', function($scope,$http) {
 				type: 'info'
 			}).show();
 		});
-		
 	};
 }]);
 
@@ -45,6 +52,12 @@ myModule.controller('OtherCtrl', ['$scope', function($scope){
 	
 }]);
 
+
+myModule.controller('testController', ['$scope', 'serviceId', function($scope , serviceId){
+	//alert(serviceId);
+}]);
+
+
 myModule.controller('GoogleAuthCtrl', ['$scope', function($scope){
 	$http.get('/api/someJson').
 		success(function(data, status, headers, config)
@@ -52,6 +65,3 @@ myModule.controller('GoogleAuthCtrl', ['$scope', function($scope){
 			$scope.items = data;
 		});
 }]);
-
-//OtherCtrl
-//IndexCtrl

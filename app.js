@@ -3,24 +3,24 @@
  */
 
 var express = require('express')
-    , routes = require('./routes')
-    , user = require('./routes/user')
-    , api = require('./routes/api')
-    , passport = require("passport")
-    , http = require('http')
-    , GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
-    , mongoose = require('mongoose')
-    , path = require('path');
+	, routes = require('./routes')
+	, user = require('./routes/user')
+	, api = require('./routes/api')
+	, passport = require("passport")
+	, http = require('http')
+	, GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
+	, mongoose = require('mongoose')
+	, path = require('path');
 
 var app = express();
-var GOOGLE_CLIENT_ID = "YOURCLIENTID";
-var GOOGLE_CLIENT_SECRET ="TOURSECRET";
+var GOOGLE_CLIENT_ID = "YOURID";
+var GOOGLE_CLIENT_SECRET ="YOURSECRET";
 mongoose.connect('mongodb://localhost');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback() {
-    console.log('Connecté à MongoDb');
+	console.log('Connecté à MongoDb');
 });
 
 var userSchema = mongoose.Schema({
@@ -41,7 +41,8 @@ userSchema.methods.findOrCreate = function(cb){
 				console.log('Utilisateur créé');
 				return cb(null, user);
 			});
-		} else
+		} 
+		else
 		{
 			console.log('Utilisateur retourné');
 			return cb(null, users[0]);
@@ -53,7 +54,7 @@ userSchema.methods.findOrCreate = function(cb){
 var User = mongoose.model('User', userSchema);
 
 passport.deserializeUser(function(obj, done) {
-    done(null, obj);
+	done(null, obj);
 });
 
 passport.serializeUser(function(user, done) {
@@ -71,8 +72,8 @@ passport.serializeUser(function(user, done) {
 		{
 			console.log(err);
 		}
-		console.log(user.displayname + " a été trouvé");
-	});
+			console.log(user.displayname + " a été trouvé");
+		});
 	// mongoUser.save(function(err, mongoUser){
 		// console.log('Utilisateur sauvegardé');
 	// });
@@ -99,7 +100,6 @@ passport.use(new GoogleStrategy({
     }
 ));
 
-
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
@@ -110,7 +110,6 @@ app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
-
 
 app.use(passport.initialize());
 app.use(passport.session());

@@ -1,5 +1,5 @@
 doctype 5
-html(ng-app='nodestarter')
+html
   head
     link(rel='stylesheet', href='/stylesheets/bootstrap.css')
     link(rel='stylesheet', href='/stylesheets/bootstrap-notify.css')
@@ -7,7 +7,7 @@ html(ng-app='nodestarter')
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(src='http://code.jquery.com/jquery-2.0.3.min.js'))
     script(src='/javascripts/angular.min.js')
-  body
+  body(ng-app='nodestarter')
     .navbar.navbar-fixed-top(bs-navbar)
       .container
         button.navbar-toggle(type='button',data-toggle='collapse',data-target='.navbar-responsive-collapse')
@@ -21,6 +21,8 @@ html(ng-app='nodestarter')
               a(href='/') Home
             li(data-match-route='/otherPage')
               a(href='#/otherPage') Link
+          form.navbar-form.pull-left
+            input.form-control.col-lg-8(ng-model='search.title' ,type='text', placeholder='Search', style='margin-left:10px')
           if !user
             .pull-right(style='width:280px;height:42px;border-radius:5px;margin-top:4px;border:2px dashed #932927;background-color:#D43F3A;')
               div(style='font-size:16px;margin-top:11px;margin-left:4px;color:white;float:left;') Sign In :
