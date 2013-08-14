@@ -22,6 +22,9 @@ myModule.controller('IndexCtrl', ['$scope','$http', function($scope,$http) {
 	$scope.sendTweet = function(e){
 		$scope.tweetMode = false;
 	};
+
+	$scope.noOfPages = 7;
+	$scope.currentPage = 4;
 	
 	$scope.tweetSubmit = function(e){
 		//$(e.target).closest('.modal').

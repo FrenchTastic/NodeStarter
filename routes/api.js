@@ -32,6 +32,14 @@ var kittySchema = mongoose.Schema({
 	name: String
 });
 
+var articlesSchema = mongoose.Schema({
+	title: String,
+	text: String,
+	images: [String]
+});
+
+var Article = mongoose.model('Article', articlesSchema);
+
 kittySchema.methods.speak = function () {
 	var greeting = this.name
 		? "Meow name is " + this.name
@@ -45,7 +53,12 @@ exports.get = function (req, res) {
 };
 
 exports.articles = function(req, res) {
-	res.json(articles);
+	var mongoArticles;
+	var numArticles;
+	Article.find(function (err, articles) {
+
+		res.json(articles);
+	});
 };
 
 exports.postTweet = function (req, res) {
@@ -68,7 +81,6 @@ exports.postTweet = function (req, res) {
 					console.log(docs);
 				});
 			}
-			
 		});
 		res.json({'msg':'Daily Tweet envoyé pour approbation.'})
 	}
@@ -76,5 +88,4 @@ exports.postTweet = function (req, res) {
 	{
 		res.json({'msg':'Pour soumettre un Daily Tweet, connectes toi !'});
 	}
-
 };

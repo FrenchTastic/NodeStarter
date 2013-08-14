@@ -20,6 +20,16 @@
 							//-td(ng-repeat='image in article.images')
 								//-img.img-responsive(ng-src='{{image}}', alt='Responsive image')
 			div(data-rp-article='articles')
+			pagination(num-pages='noOfPages', current-page='currentPage')
+			//-ul.pagination
+				//-li
+					//-a(href='#') &laquo;
+				//-li
+					//-a(href='#') 1
+				//-li
+					//-a(href='#') 2
+				//-li
+					//-a(href='#') 3
 	.col-12.col-sm-4.col-lg-4.col-offset-1
 		.row
 			tweety
