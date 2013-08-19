@@ -55,7 +55,8 @@ exports.get = function (req, res) {
 exports.articles = function(req, res) {
 	var mongoArticles;
 	var numArticles;
-	Article.find(function (err, articles) {
+	console.log(req)
+	Article.find({}, null, { skip: 0, limit: 1}, function (err, articles) {
 
 		res.json(articles);
 	});
@@ -64,7 +65,6 @@ exports.articles = function(req, res) {
 exports.postTweet = function (req, res) {
 	if(req.user == undefined)
 	{
-		
 		var fluffy = new Kitten({ name: 'poulet' });
 		fluffy.save(function (err, fluffy) {
 			if (err)

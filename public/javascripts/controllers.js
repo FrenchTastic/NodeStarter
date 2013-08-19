@@ -5,7 +5,7 @@ myModule.factory('serviceId', function() {
 myModule.controller('IndexCtrl', ['$scope','$http', function($scope,$http) {
     $scope.title = "Les nénuphars sont mes amis";
 		
-		$http.get('/api/articles').success(function(data, status, headers, config){
+		$http.get('/api/articles?page=1').success(function(data, status, headers, config){
 			console.log("les articles sont rétournés :" );
 			$scope.articles = data;
 		});
@@ -25,6 +25,10 @@ myModule.controller('IndexCtrl', ['$scope','$http', function($scope,$http) {
 
 	$scope.noOfPages = 7;
 	$scope.currentPage = 4;
+
+	$scope.setPage = function (pageNo) {
+		$scope.currentPage = pageNo;
+	};
 	
 	$scope.tweetSubmit = function(e){
 		//$(e.target).closest('.modal').
