@@ -4,8 +4,9 @@ myModule.factory('serviceId', function() {
 
 myModule.controller('IndexCtrl', ['$scope','$http', function($scope,$http) {
     $scope.title = "Les nénuphars sont mes amis";
-		
-		$http.get('/api/articles?page=1').success(function(data, status, headers, config){
+		$scope.currentPage = 1;
+
+		$http.get('/api/articles?page=' + $scope.currentPage ).success(function(data, status, headers, config){
 			console.log("les articles sont rétournés :" );
 			$scope.articles = data;
 		});
@@ -24,10 +25,15 @@ myModule.controller('IndexCtrl', ['$scope','$http', function($scope,$http) {
 	};
 
 	$scope.noOfPages = 7;
-	$scope.currentPage = 4;
+	
 
 	$scope.setPage = function (pageNo) {
 		$scope.currentPage = pageNo;
+
+		$http.get('/api/articles?page=' + pageNo).success(function(data, status, headers, config){
+			console.log("les articles sont rétournés :" );
+			$scope.articles = data;
+		});
 	};
 	
 	$scope.tweetSubmit = function(e){

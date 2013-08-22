@@ -1,5 +1,6 @@
 'use strict';
 
+//var myModule = angular.module('nodestarter', ['ngRoute', '$strap.directives','ui.bootstrap']);
 var myModule = angular.module('nodestarter', ['$strap.directives','ui.bootstrap']);
 
 myModule.config(['$routeProvider', function($routeProvider) {

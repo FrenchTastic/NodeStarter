@@ -55,8 +55,8 @@ exports.get = function (req, res) {
 exports.articles = function(req, res) {
 	var mongoArticles;
 	var numArticles;
-	console.log(req)
-	Article.find({}, null, { skip: 0, limit: 1}, function (err, articles) {
+	var pageToSkip = req.query.page - 1;
+	Article.find({}, null, { skip: pageToSkip, limit: 1}, function (err, articles) {
 
 		res.json(articles);
 	});

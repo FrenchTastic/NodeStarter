@@ -83,10 +83,11 @@ myModule.directive('btnSubmitTweet', function() {
 myModule.directive('rpArticle', function(){
 	return {
 		restrict: 'E,A',
-		template: '<div ng-repeat="article in articles  | filter:search" class="col-12 col-sm-7 col-lg-12 box divHeader"><h3 style="color: #7A7876;">{{article.title}}</h3><hr class="fineLine" /><div class="divContent"><img class="img-responsive" src="{{article.images[0]}}" alt="responsive" />{{article.text}}</div></div>',
+		template: '<div ng-repeat="article in articles  | filter:search" ng-animate="\'animate\'" class="col-12 col-sm-7 col-lg-12 box divHeader"><h3 style="color: #7A7876;">{{article.title}}</h3><hr class="fineLine" /><div class="divContent"><img class="img-responsive" src="{{article.images[0]}}" alt="responsive" />{{article.text}}</div></div>',
 		//scope: { articles: '=rpArticle'},
 		link: function(scope, element, attr) {
 			scope.$watch('articles', function(articles) {
+				//alert('boom');
 				if(scope.articles !== undefined)
 				{
 					
