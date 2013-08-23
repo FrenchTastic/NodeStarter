@@ -5,7 +5,7 @@ body {
 	background-color:#E3E2DC;
 }
 
-.navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus
+/*.navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus
 {
 	color:white;
 }
@@ -23,7 +23,7 @@ body {
 .navbar
 {
 	background-color:#475B6F; 
-}
+}*/
 
 a {
   color: #00B7FF;
@@ -172,11 +172,11 @@ border-radius: 3px;
  
 .animate-leave.animate-leave-active,
 .animate-enter {
-    -webkit-transform: scaleY(0);
-    -moz-transform: scaleY(0);
-    -ms-transform: scaleY(0);
-    -o-transform: scaleY(0);
-    transform: scaleY(0);
+    -webkit-transform: scaleY(0.5);
+    -moz-transform: scaleY(0.5);
+    -ms-transform: scaleY(0.5);
+    -o-transform: scaleY(0.5);
+    transform: scaleY(0.5);
     height: 0px;
     opacity: 0;
 }

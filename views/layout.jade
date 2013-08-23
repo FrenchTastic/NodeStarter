@@ -10,21 +10,23 @@ html
     //script(src='/javascripts/angular-route.js')
 
   body(ng-app='nodestarter')
-    .navbar.navbar-fixed-top(bs-navbar)
+    .navbar.navbar-default.navbar-fixed-top(bs-navbar)
       .container
-        button.navbar-toggle(type='button',data-toggle='collapse',data-target='.navbar-responsive-collapse')
-          span.icon-bar
-          span.icon-bar
-          span.icon-bar
-        a.navbar-brand(href='#') FrenchTastic
-        .nav-collapse.collapse.navbar-responsive-collapse(style='height: auto;')
-          ul.nav.navbar-nav
+        .navbar-header
+          button.navbar-toggle(type='button',data-toggle='collapse',data-target='.navbar-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href="#") FrenchTastic
+        .navbar-collapse.collapse.bs-navbar-collapse(style='height: auto;')
+          ul.nav.navbar-nav 
             li.active(data-match-route='/')
-              a(href='/') Home
+              a(href='#') Home
             li(data-match-route='/otherPage')
-              a(href='#/otherPage') Link
-          form.navbar-form.pull-left
-            input.form-control.col-lg-8(ng-model='search.title' ,type='text', placeholder='Search', style='margin-left:10px')
+              a(href='#') Link
+          form.navbar-form.navbar-right
+            .form-group
+              input.form-control.col-lg-8(ng-model='search.title' ,type='text', placeholder='Search', style='margin-left:10px')
           if !user
             .pull-right(style='width:280px;height:42px;border-radius:5px;margin-top:4px;border:2px dashed #932927;background-color:#D43F3A;')
               div(style='font-size:16px;margin-top:11px;margin-left:4px;color:white;float:left;') Sign In :
@@ -36,4 +38,5 @@ html
             ul.nav.navbar-nav.pull-right
               li
                 a(href='#') Bonjour, #{user.displayName }
+    
     block content

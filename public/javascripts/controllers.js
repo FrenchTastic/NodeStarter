@@ -29,9 +29,10 @@ myModule.controller('IndexCtrl', ['$scope','$http', function($scope,$http) {
 
 	$scope.setPage = function (pageNo) {
 		$scope.currentPage = pageNo;
-
+		
 		$http.get('/api/articles?page=' + pageNo).success(function(data, status, headers, config){
 			console.log("les articles sont rétournés :" );
+			$scope.articles = "";
 			$scope.articles = data;
 		});
 	};
