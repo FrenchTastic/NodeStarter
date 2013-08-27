@@ -10,13 +10,14 @@ html
     //script(src='/javascripts/angular-route.js')
 
   body(ng-app='nodestarter')
-    .navbar.navbar-default.navbar-fixed-top(bs-navbar)
+    .navbar.navbar-default.navbar-fixed-top(bs-navbar, ng-controller="LayoutController")
       .container
         .navbar-header
           button.navbar-toggle(type='button',data-toggle='collapse',data-target='.navbar-collapse')
             span.icon-bar
             span.icon-bar
             span.icon-bar
+          button.navbar-switch.visible-xs.btn.btn-primary(data-toggle='offcanvas', ng-click='toggleSidebar()') Switch
           a.navbar-brand(href="#") FrenchTastic
         .navbar-collapse.collapse.bs-navbar-collapse(style='height: auto;')
           ul.nav.navbar-nav 

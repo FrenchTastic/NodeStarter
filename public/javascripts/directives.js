@@ -34,7 +34,7 @@ myModule.directive('tweety', function() {
 	return {
 		restrict: 'E',
 		//template: '<span data-edit-tweet></span><h3>Let\'s people talk</h3><hr class="fine" /><blockquote data-ng-show="tweetMode" class="pull-right"><p> I don\'t give a shit about your Website</p><small> A fucking bastard</small></blockquote><textarea style="margin-bottom:20px;width:100%;" rows="4" data-ng-hide="tweetMode" ng-model="textTweet" class="pull-right"></textarea></span>',
-		template: '<div class="col-12 col-sm-12 col-lg-12 box divHeader"><span data-edit-tweet></span><h3 style="color: #7A7876;">Let\'s people talk</h3><hr class="fineLine" /><div class="divContent"><blockquote data-ng-show="tweetMode"><p> I don\'t give a shit about your Website</p><small> A fucking bastard</small></blockquote><textarea style="margin-bottom:20px;width:100%;" rows="4" data-ng-hide="tweetMode" ng-model="textTweet"></textarea></span></div>',
+		template: '<div class="col-12 col-sm-12 col-lg-12 divHeader"><span data-edit-tweet></span><h3 style="color: #7A7876;">Let\'s people talk</h3><hr class="fineLine" /><div class="divContent box"><blockquote data-ng-show="tweetMode"><p> I don\'t give a shit about your Website</p><small> A fucking bastard</small></blockquote><textarea style="margin-bottom:20px;width:100%;" rows="4" data-ng-hide="tweetMode" ng-model="textTweet"></textarea></span></div>',
 		link: function(scope, element, attrs){
 			scope.tweetMode = true;
 			scope.edit = function() {
@@ -83,13 +83,18 @@ myModule.directive('btnSubmitTweet', function() {
 myModule.directive('rpArticle', function(){
 	return {
 		restrict: 'E,A',
-		template: '<div ng-repeat="article in articles  | filter:search" ng-animate="{enter: \'animate-enter\'}" class="col-12 col-sm-7 col-lg-12 box divHeader"><h3 style="color: #7A7876;">{{article.title}}</h3><hr class="fineLine" /><div class="divContent"><img class="img-responsive" src="{{article.images[0]}}" alt="responsive" />{{article.text}}</div></div>',
+		templateUrl: 'article.html',
 		//scope: { articles: '=rpArticle'},
 		link: function(scope, element, attr) {
 			scope.$watch('articles', function(articles) {
+				//$("#pagination").css("display", "none");
 				//alert('boom');
+				//$("#pagination").show("slow");
 				if(scope.articles !== undefined)
 				{
+					//var timer = setInterval(function(){
+				        //$("#pagination").show("slow");
+				    //}, 400);  
 					
 				}
 			})

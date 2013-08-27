@@ -2,13 +2,25 @@ myModule.factory('serviceId', function() {
 	return 4;
 });
 
+myModule.controller('LayoutController', ['$scope', function($scope){
+	$scope.toggleSidebar = function(e){
+		$('.row-offcanvas').toggleClass('active');
+	};
+
+}]);
+
 myModule.controller('IndexCtrl', ['$scope','$http', function($scope,$http) {
     $scope.title = "Les nénuphars sont mes amis";
 		$scope.currentPage = 1;
-
+		$scope.pagVisibility = false;
 		$http.get('/api/articles?page=' + $scope.currentPage ).success(function(data, status, headers, config){
 			console.log("les articles sont rétournés :" );
 			$scope.articles = data;
+			var timer = setTimeout(function(){
+		       $scope.$apply(function() {
+		       	$scope.pagVisibility = true;
+		       });
+		    }, 600);
 		});
 		
 		$scope.changeText = function()
@@ -29,14 +41,20 @@ myModule.controller('IndexCtrl', ['$scope','$http', function($scope,$http) {
 
 	$scope.setPage = function (pageNo) {
 		$scope.currentPage = pageNo;
-		
+		$scope.pagVisibility = false;
 		$http.get('/api/articles?page=' + pageNo).success(function(data, status, headers, config){
 			console.log("les articles sont rétournés :" );
 			$scope.articles = "";
 			$scope.articles = data;
+			var timer = setTimeout(function(){
+		       $scope.$apply(function() {
+		       	$scope.pagVisibility = true;
+		       });
+		    }, 600);
 		});
 	};
-	
+
+
 	$scope.tweetSubmit = function(e){
 		//$(e.target).closest('.modal').
 		//angular.toJson($scope.textTweet)
