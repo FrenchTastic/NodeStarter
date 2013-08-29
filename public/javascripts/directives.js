@@ -1,4 +1,5 @@
-myModule.directive('editTweet', function() {
+angular.module('nodestarter.directives', []).
+directive('editTweet', function() {
   return{
 		restrict: 'A',
 		template: '<span data-ng-hide="editMode" data-ng-click="sendTweet()" class="glyphicon glyphicon-pencil pull-right" style="margin-top:10px;"></span>' +
@@ -27,10 +28,8 @@ myModule.directive('editTweet', function() {
 			});
 		}
 	}
-});
-
-
-myModule.directive('tweety', function() {
+})
+.directive('tweety', function() {
 	return {
 		restrict: 'E',
 		//template: '<span data-edit-tweet></span><h3>Let\'s people talk</h3><hr class="fine" /><blockquote data-ng-show="tweetMode" class="pull-right"><p> I don\'t give a shit about your Website</p><small> A fucking bastard</small></blockquote><textarea style="margin-bottom:20px;width:100%;" rows="4" data-ng-hide="tweetMode" ng-model="textTweet" class="pull-right"></textarea></span>',
@@ -59,17 +58,14 @@ myModule.directive('tweety', function() {
 			});
 		}
 	};
-});
-
-			
-myModule.directive('sendModal', function() {
+})
+.directive('sendModal', function() {
   return{
 		restrict: 'E,A',
 		templateUrl: 'modal.html'
 	};
-});
-
-myModule.directive('btnSubmitTweet', function() {
+})
+.directive('btnSubmitTweet', function() {
   return{
 		restrict: 'A',
 		link: function(scope, element, attrs){
@@ -78,9 +74,8 @@ myModule.directive('btnSubmitTweet', function() {
 			});
 		}
 	};
-});
-
-myModule.directive('rpArticle', function(){
+})
+.directive('rpArticle', function(){
 	return {
 		restrict: 'E,A',
 		templateUrl: 'article.html',
@@ -100,9 +95,8 @@ myModule.directive('rpArticle', function(){
 			})
 		}
 	};
-});
-
-myModule.directive('articleFull', function(){
+})
+.directive('articleFull', function(){
 	return {
 		restrict: 'E,A',
 		templateUrl: 'articleFull.html',

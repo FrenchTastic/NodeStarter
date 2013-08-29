@@ -1,9 +1,8 @@
 'use strict';
 
 //var myModule = angular.module('nodestarter', ['ngRoute', '$strap.directives','ui.bootstrap']);
-var myModule = angular.module('nodestarter', ['$strap.directives','ui.bootstrap', 'ArticleServiceModule']);
-
-myModule.config(['$routeProvider', function($routeProvider) {
+angular.module('nodestarter', ['$strap.directives','ui.bootstrap', 'nodestarter.services', 'nodestarter.directives', 'nodestarter.controllers']).
+config(['$routeProvider', function($routeProvider) {
 		$routeProvider.when('/otherPage', { 
 				templateUrl: 'partials/other', 
 				controller: 'OtherCtrl'

@@ -1,21 +1,16 @@
-myModule.factory('serviceId', function() { 
-	return 4;
-});
-
-myModule.controller('LayoutController', ['$scope', function($scope){
+angular.module('nodestarter.controllers', []).
+controller('LayoutController', ['$scope', function($scope){
 	$scope.toggleSidebar = function(e){
 		$('.row-offcanvas').toggleClass('active');
 	};
 
-}]);
-
-myModule.controller('ArticleCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+}])
+.controller('ArticleCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
 	$http.get('/api/article?id=' + $routeParams.articleId).success(function(data, status, headers, config){
 		$scope.article = data;
 	});
-}]);
-
-myModule.controller('IndexCtrl', ['$scope','$http', function($scope,$http, Articles) {
+}])
+.controller('IndexCtrl', ['$scope','$http', function($scope,$http, Articles) {
 
     $scope.title = "Les nénuphars sont mes amis";
 		$scope.currentPage = 1;
@@ -23,7 +18,7 @@ myModule.controller('IndexCtrl', ['$scope','$http', function($scope,$http, Artic
 		$http.get('/api/articles?page=' + $scope.currentPage ).success(function(data, status, headers, config){
 			console.log("les articles sont rétournés :" );
 			$scope.articles = data;
-			Articles.getShortenArticles(data);
+			//Articles.getShortenArticles(data);
 			var timer = setTimeout(function(){
 		       $scope.$apply(function() {
 		       	$scope.pagVisibility = true;
@@ -82,9 +77,8 @@ myModule.controller('IndexCtrl', ['$scope','$http', function($scope,$http, Artic
 			}).show();
 		});
 	};
-}]);
-
-myModule.controller('OtherCtrl', ['$scope', function($scope){
+}])
+.controller('OtherCtrl', ['$scope', function($scope){
 	$scope.bananier = [
 		{
 			"color":"jaune",
@@ -96,15 +90,11 @@ myModule.controller('OtherCtrl', ['$scope', function($scope){
 		}
 	];	
 	
-}]);
-
-
-myModule.controller('testController', ['$scope', 'serviceId', function($scope , serviceId){
+}])
+.controller('testController', ['$scope', 'serviceId', function($scope , serviceId){
 	//alert(serviceId);
-}]);
-
-
-myModule.controller('GoogleAuthCtrl', ['$scope', function($scope){
+}])
+.controller('GoogleAuthCtrl', ['$scope', function($scope){
 	$http.get('/api/someJson').
 		success(function(data, status, headers, config)
 		{
