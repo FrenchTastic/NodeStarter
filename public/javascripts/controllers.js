@@ -10,15 +10,17 @@ controller('LayoutController', ['$scope', function($scope){
 		$scope.article = data;
 	});
 }])
-.controller('IndexCtrl', ['$scope','$http', function($scope,$http, Articles) {
+.controller('IndexCtrl', ['$scope','$http', 'Articles', function($scope,$http, Articles) {
 
     $scope.title = "Les nénuphars sont mes amis";
 		$scope.currentPage = 1;
 		$scope.pagVisibility = false;
+		//$scope.articles = Articles.getArticles($scope.currentPage);
 		$http.get('/api/articles?page=' + $scope.currentPage ).success(function(data, status, headers, config){
 			console.log("les articles sont rétournés :" );
-			$scope.articles = data;
-			//Articles.getShortenArticles(data);
+			$scope.articles = Articles.getShortenArticles(data);
+			//$scope.articles = data;
+			
 			var timer = setTimeout(function(){
 		       $scope.$apply(function() {
 		       	$scope.pagVisibility = true;
