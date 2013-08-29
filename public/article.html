@@ -1,10 +1,13 @@
-<div ng-repeat="article in articles  | filter:search" ng-animate="{enter: 'animate-enter'}" class="col-12 col-sm-7 col-lg-12 divHeader">
+<div ng-repeat="article in articles  | filter:search" ng-animate="{enter: 'animate-enter'}" class="col-12 col-sm-12 col-lg-12 divHeader">
 	<h3 style="color: #7A7876;">
 		{{article.title}}
 	</h3>
 	<hr class="fineLine" />
 	<div class="divContent box"><img class="img-responsive" src="{{article.images[0]}}" alt="responsive" />
 		{{article.text}}
+		<br />
+		<!--<button type="button" ng-click="detailPage({{article.articleNo}})" class="btn btn-primary pull-right" style="margin-top:5px;">Lire la suite....</button>-->
+		<a href="#/articles/{{article.articleNo}}" class="btn btn-primary pull-right" style="margin-top:5px;">Lire la suite....</a>
+		<div class="clearfix"></div>
 	</div>
 </div>
-		

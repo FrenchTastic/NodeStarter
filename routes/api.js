@@ -55,11 +55,26 @@ exports.get = function (req, res) {
 exports.articles = function(req, res) {
 	var mongoArticles;
 	var numArticles;
-	var pageToSkip = req.query.page - 1;
-	Article.find({}, null, { skip: pageToSkip, limit: 1}, function (err, articles) {
+	if(req.query.page)
+	{
+		var pageToSkip = req.query.page - 1;
+		Article.find({}, null, { skip: pageToSkip, limit: 1}, function (err, articles) {
+			res.json(articles);
+		});
+	}
+};
 
-		res.json(articles);
-	});
+exports.article = function(req, res) {
+	var mongoArticles;
+	var numArticles;
+	if(req.query.id)
+	{
+		Article.findOne({articleNo: parseInt(req.query.id)}, null, function (err, article) {
+			res.json(article);
+		});
+	}
+
+	
 };
 
 exports.postTweet = function (req, res) {

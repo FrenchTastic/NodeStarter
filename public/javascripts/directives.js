@@ -101,3 +101,14 @@ myModule.directive('rpArticle', function(){
 		}
 	};
 });
+
+myModule.directive('articleFull', function(){
+	return {
+		restrict: 'E,A',
+		templateUrl: 'articleFull.html',
+		//scope: { articles: '=rpArticle'},
+		link: function(scope, element, attr) {
+		}
+	};
+});
+

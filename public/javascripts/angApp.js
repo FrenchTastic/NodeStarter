@@ -1,7 +1,7 @@
 'use strict';
 
 //var myModule = angular.module('nodestarter', ['ngRoute', '$strap.directives','ui.bootstrap']);
-var myModule = angular.module('nodestarter', ['$strap.directives','ui.bootstrap']);
+var myModule = angular.module('nodestarter', ['$strap.directives','ui.bootstrap', 'ArticleServiceModule']);
 
 myModule.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.when('/otherPage', { 
@@ -13,5 +13,9 @@ myModule.config(['$routeProvider', function($routeProvider) {
 			}).when('/auth/google', { 
 				templateUrl: 'auth/google', 
 				controller: 'GoogleAuthCtrl'
-			}).otherwise({redirectTo: '/'});
+			}).otherwise({redirectTo: '/'
+			}).when('/articles/:articleId',{
+				templateUrl: 'partials/articleDetail',
+				controller: 'ArticleCtrl'
+			});
 }]);

@@ -126,6 +126,7 @@ app.get('/partials/:name', routes.partials);
 app.get('/users', user.list);
 app.get('/api/someJson', api.get);
 app.get('/api/articles', api.articles);
+app.get('/api/article', api.article);
 app.get('/connected', routes.connected);
 
 app.get('/auth/google',passport.authenticate('google'));

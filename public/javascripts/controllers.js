@@ -9,13 +9,21 @@ myModule.controller('LayoutController', ['$scope', function($scope){
 
 }]);
 
-myModule.controller('IndexCtrl', ['$scope','$http', function($scope,$http) {
+myModule.controller('ArticleCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+	$http.get('/api/article?id=' + $routeParams.articleId).success(function(data, status, headers, config){
+		$scope.article = data;
+	});
+}]);
+
+myModule.controller('IndexCtrl', ['$scope','$http', function($scope,$http, Articles) {
+
     $scope.title = "Les nénuphars sont mes amis";
 		$scope.currentPage = 1;
 		$scope.pagVisibility = false;
 		$http.get('/api/articles?page=' + $scope.currentPage ).success(function(data, status, headers, config){
 			console.log("les articles sont rétournés :" );
 			$scope.articles = data;
+			Articles.getShortenArticles(data);
 			var timer = setTimeout(function(){
 		       $scope.$apply(function() {
 		       	$scope.pagVisibility = true;
@@ -37,6 +45,11 @@ myModule.controller('IndexCtrl', ['$scope','$http', function($scope,$http) {
 	};
 
 	$scope.noOfPages = 7;
+
+	$scope.detailPage = function(articleNo)
+	{
+		alert(articleNo);
+	}
 	
 
 	$scope.setPage = function (pageNo) {
@@ -46,6 +59,7 @@ myModule.controller('IndexCtrl', ['$scope','$http', function($scope,$http) {
 			console.log("les articles sont rétournés :" );
 			$scope.articles = "";
 			$scope.articles = data;
+
 			var timer = setTimeout(function(){
 		       $scope.$apply(function() {
 		       	$scope.pagVisibility = true;
