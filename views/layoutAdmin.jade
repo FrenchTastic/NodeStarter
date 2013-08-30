@@ -1,0 +1,42 @@
+doctype 5
+html
+  head
+    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap-notify.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap-glyphicons.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='http://code.jquery.com/jquery-2.0.3.min.js'))
+    script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js')
+    //script(src='/javascripts/angular-route.js')
+
+  body(ng-app='nodeAdmin')
+    .navbar.navbar-default.navbar-fixed-top(bs-navbar, ng-controller="LayoutController")
+      .container
+        .navbar-header
+          button.navbar-toggle(type='button',data-toggle='collapse',data-target='.navbar-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          button.navbar-switch.visible-xs.btn.btn-primary(data-toggle='offcanvas', ng-click='toggleSidebar()') Switch
+          a.navbar-brand(href="#") FrenchTastic
+        .navbar-collapse.collapse.bs-navbar-collapse(style='height: auto;')
+          ul.nav.navbar-nav 
+            li.active(data-match-route='/')
+              a(href='#/') Admin
+            li(data-match-route='/articles')
+              a(href='#/articles') Articles
+            li(data-match-route='/create')
+              a(href='#/create') Création
+            li(data-match-route='/comments')
+              a(href='#/comments') Commentaires
+            li
+              a(href='/') Accèder au site
+          if !user
+            // a.pull-right.btn.btn-primary.navbar-btn(data-toggle='modal', href='#myModal') Modal GO
+            // a.pull-right.btn.btn-danger.navbar-btn(href='/auth/google') Sign In
+          else
+            ul.nav.navbar-nav.pull-right
+              li
+                a(href='#') Bonjour, #{user.displayName }
+    
+    block content
