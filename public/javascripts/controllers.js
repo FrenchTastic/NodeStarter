@@ -102,4 +102,7 @@ controller('LayoutController', ['$scope', function($scope){
 		{
 			$scope.items = data;
 		});
+}])
+.controller('AdminCtrl', ['$scope', function($scope){
+	alert("tomate");
 }]);

@@ -115,6 +115,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/admin', express.static(path.join(__dirname, 'public/admin')));
 
 // development only
 if ('development' == app.get('env')) {
@@ -128,7 +129,8 @@ app.get('/api/someJson', api.get);
 app.get('/api/articles', api.articles);
 app.get('/api/article', api.article);
 app.get('/connected', routes.connected);
-
+app.get('/pardon', routes.admin);
+app.get('/pardon/partials/:name', routes.partials);
 app.get('/auth/google',passport.authenticate('google'));
 app.post('/api/tweet',api.postTweet);
 

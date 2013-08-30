@@ -9,12 +9,16 @@ config(['$routeProvider', function($routeProvider) {
 			}).when('/', { 
 				templateUrl: 'partials/index', 
 				controller: 'IndexCtrl'
-			}).when('/auth/google', { 
-				templateUrl: 'auth/google', 
-				controller: 'GoogleAuthCtrl'
-			}).otherwise({redirectTo: '/'
 			}).when('/articles/:articleId',{
 				templateUrl: 'partials/articleDetail',
 				controller: 'ArticleCtrl'
+			}).when('/pardon',{
+				templateUrl: '/partials/admin',
+				controller: 'AdminCtrl'
+			})
+			.when('/auth/google', { 
+				templateUrl: 'auth/google', 
+				controller: 'GoogleAuthCtrl'
+			}).otherwise({redirectTo: '/'
 			});
 }]);
