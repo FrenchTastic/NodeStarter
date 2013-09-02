@@ -6,6 +6,6 @@ controller('LayoutController', ['$scope', function($scope){
 
 }])
 .controller('AdminCtrl', ['$scope', function($scope){
-
+	CKEDITOR.replace( 'editor1' );
 }])
 ;
