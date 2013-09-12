@@ -15,8 +15,6 @@ factory('Articles', ['$http', function($http){
 				return data;
 			});
 		}
-
-
 		
 	}
 }]);

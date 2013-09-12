@@ -73,8 +73,6 @@ exports.article = function(req, res) {
 			res.json(article);
 		});
 	}
-
-	
 };
 
 exports.postTweet = function (req, res) {

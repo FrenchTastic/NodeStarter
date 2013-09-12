@@ -10,9 +10,9 @@ html
     //script(src='/javascripts/angular-route.js')
 
   body(ng-app='nodestarter')
-    .navbar.navbar-default.navbar-fixed-top(bs-navbar, ng-controller="LayoutController")
+    .navbar.navbar-default.navbar-fixed-top(bs-navbar)
       .container
-        .navbar-header
+        .navbar-header(ng-controller="LayoutController")
           button.navbar-toggle(type='button',data-toggle='collapse',data-target='.navbar-collapse')
             span.icon-bar
             span.icon-bar
