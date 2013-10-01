@@ -141,8 +141,10 @@ app.get('/auth/google/callback', passport.authenticate('google', { failureRedire
         res.redirect('/connected');
     });
 
-app.post('/article', function(req, res){
-	console.log("patate" + data);
+app.post('/article', api.postArticle);
+
+app.post('/articleee', function(req, res){
+	console.log("patate " + req.params[0]);
 });
 
 http.createServer(app).listen(app.get('port'), function(){

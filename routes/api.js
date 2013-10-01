@@ -28,14 +28,17 @@ var articles = [
 ];
 
 var mongoose = require('mongoose');
+
 var kittySchema = mongoose.Schema({
 	name: String
 });
 
 var articlesSchema = mongoose.Schema({
+	articleNo: Number,
 	title: String,
 	text: String,
-	images: [String]
+	images: [String],
+	featured: String
 });
 
 var Article = mongoose.model('Article', articlesSchema);
@@ -73,6 +76,17 @@ exports.article = function(req, res) {
 			res.json(article);
 		});
 	}
+};
+
+exports.postArticle = function (req, res) {
+	var nextArticle = 1;
+	Article.findOne().sort('-articleNo').exec(function(err, doc){
+		nextArticle = doc.articleNo + 1;
+		var newArticle = new Article({articleNo: nextArticle, text: req.body.text, title: req.body.title });
+		newArticle.save(function(err) {console.log(err)});
+	});
+
+	res.send(200);
 };
 
 exports.postTweet = function (req, res) {

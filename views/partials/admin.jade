@@ -5,7 +5,7 @@
 			form(ng-submit='submit()')
 				textarea(ck-editor,ng-model="articleHtml", name="editor1")
 				br
-				input.pull-right.btn.btn-success(type="submit",ng-click='submit()') Ajouter
+				input.pull-right.btn.btn-success(type="submit") Ajouter
 			.clearfix
 			form(ng-submit="submit()",ng-controller="AdminCtrl") Enter text and hit enter:
 				input(type="text", ng-model="text", name="text")
