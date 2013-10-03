@@ -2,10 +2,23 @@
 	.row
 		.col-xs-12.col-sm-12
 			h3(style="color: #7A7876;") Ajouter un article
-			form(ng-submit='submit()')
-				textarea(ck-editor,ng-model="articleHtml", name="editor1")
+			form.addArticle-form(name='articleForm', novalidate ) 
+				h4(style="color: #7A7876;") Titre de l'articlie
+				.row
+					.col-lg-6
+						input.form-control(type="text",placeholder="Titre", ng-model="article.title",required)
+				h4(style="color: #7A7876;") Ajouter une photo principale
+				.row
+					.col-lg-6
+						.input-group
+							input.form-control(type="url",placeholder="Url de l'image",id="featuredUrl", ng-model="article.featured",required)
+							span.input-group-btn
+								button.btn.btn-default(type="button", ng-click="loadFeaturedImage()") Go!
 				br
-				input.pull-right.btn.btn-success(type="submit") Ajouter
+				h4(style="color: #7A7876;") Contenu de l'article
+				textarea(ck-editor,ng-model="articleHtml", name="editor1", required )
+				br
+				input.pull-right.btn.btn-success(type="submit",ng-click='submit()', value="Ajouter", ng-disabled="form.$invalid") 
 			.clearfix
 			form(ng-submit="submit()",ng-controller="AdminCtrl") Enter text and hit enter:
 				input(type="text", ng-model="text", name="text")

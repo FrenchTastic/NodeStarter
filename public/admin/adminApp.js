@@ -9,5 +9,8 @@ config(['$routeProvider', function($routeProvider) {
 			}).when('/', { 
 				templateUrl: 'partials/admin', 
 				controller: 'AdminCtrl'
+			}).when('/articles', { 
+				templateUrl: 'partials/articlesList',
+				controller: 'ArticlesListCtrl'
 			});
 }]);

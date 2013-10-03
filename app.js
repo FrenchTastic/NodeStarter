@@ -128,6 +128,7 @@ app.get('/users', user.list);
 app.get('/api/someJson', api.get);
 app.get('/api/articles', api.articles);
 app.get('/api/article', api.article);
+app.get('/articlesList', api.articlesList)
 app.get('/connected', routes.connected);
 app.get('/pardon', routes.admin);
 app.get('/pardon/partials/:name', routes.partials);

@@ -89,6 +89,13 @@ exports.postArticle = function (req, res) {
 	res.send(200);
 };
 
+exports.articlesList = function(req, res){
+	Article.find().sort('articleNo').exec(function(err, articles){
+		console.log("commande réussie");
+		res.json(articles);
+	});
+};
+
 exports.postTweet = function (req, res) {
 	if(req.user == undefined)
 	{
@@ -102,7 +109,7 @@ exports.postTweet = function (req, res) {
 			{
 				fluffy.speak();
 				Kitten.find(function (err, kittens) {
-					console.log(kittens)
+					console.log(kittens);
 				});
 				Kitten.find({ name: /^fluff/ }, function (err, docs) {
 					console.log(docs);

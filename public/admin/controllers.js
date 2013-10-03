@@ -9,29 +9,55 @@ controller('LayoutController', ['$scope', function($scope){
 	$scope.text = 'roger';
 	
 	$scope.submit = function() {
-		var articleTextp =  $($.parseHTML(this.articleHtml));
-		var articleText = $(this.articleHtml);
-		var allImages = $(articleTextp).find('img');
-		if(allImages.length != 0)
+		if(!this.articleForm.$invalid)
 		{
-			for (var i = 0; i < allImages.length; i++) {
-				$(allImages[i]).replaceWith('{'+ i +'}');
-				//articleText = articleText.replace(allImages[i], "{"+ i +"}" )
-			};
+			var articleTextp =  $($.parseHTML(this.articleHtml));
+			var articleText = $(this.articleHtml);
+			var allImages = $(articleTextp).find('img');
+			if(allImages.length != 0)
+			{
+				for (var i = 0; i < allImages.length; i++) {
+					$(allImages[i]).replaceWith('{'+ i +'}');
+					//articleText = articleText.replace(allImages[i], "{"+ i +"}" )
+				};
+			}
+			else
+			{
+				allImages = [];
+			}
+			
+
+			var data = JSON.stringify({title:'banane', text:this.articleHtml, images:allImages});
+			$http.post('/article', data).
+			success(function(data, status, headers, config)
+			{
+				CKEDITOR.instances.editor1.setData('');
+				alert(data);
+			});
 		}
 		else
 		{
-			allImages = [];
+			alert("Veuillez remplir tous les champs.");
 		}
 		
-
-		var data = JSON.stringify({title:'banane', text:this.articleHtml, images:allImages});
-		$http.post('/article', data).
-		success(function(data, status, headers, config)
-		{
-			CKEDITOR.instances.editor1.setData('');
-			alert(data);
-		});
   	};
+
+  	$scope.loadFeaturedImage = function(e){
+  		if($(featuredUrl).val())
+  		{
+			
+  		}
+  		else 
+  		{
+  			alert("Le titre doit être saisie");
+  		}
+	};
+
+
+}])
+.controller('ArticlesListCtrl', ['$scope', '$http', function($scope, $http){
+	$http.get('/articlesList').success(function(data, status, headers, config){
+		$scope.articles = data;
+	});
 }])
 ;

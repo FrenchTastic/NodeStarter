@@ -236,3 +236,13 @@ border-radius: 3px;
   margin-bottom: 8px;
   border-radius: 4px;
 }
+
+.addArticle-form input.ng-invalid.ng-dirty {
+  background-color: #FA787E;
+  color: #ffffff;
+}
+
+.addArticle-form input.ng-valid.ng-dirty {
+  background-color: #78FA89;
+  color: #ffffff;
+}
