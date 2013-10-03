@@ -38,7 +38,8 @@ var articlesSchema = mongoose.Schema({
 	title: String,
 	text: String,
 	images: [String],
-	featured: String
+	featured: String,
+	date: Date
 });
 
 var Article = mongoose.model('Article', articlesSchema);
@@ -82,7 +83,7 @@ exports.postArticle = function (req, res) {
 	var nextArticle = 1;
 	Article.findOne().sort('-articleNo').exec(function(err, doc){
 		nextArticle = doc.articleNo + 1;
-		var newArticle = new Article({articleNo: nextArticle, text: req.body.text, title: req.body.title });
+		var newArticle = new Article({articleNo: nextArticle, text: req.body.text, title: req.body.title, featured: req.body.featured, date: new Date });
 		newArticle.save(function(err) {console.log(err)});
 	});
 

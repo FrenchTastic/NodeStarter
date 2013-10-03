@@ -27,7 +27,7 @@ controller('LayoutController', ['$scope', function($scope){
 			}
 			
 
-			var data = JSON.stringify({title:'banane', text:this.articleHtml, images:allImages});
+			var data = JSON.stringify({title:this.article.title, text:this.articleHtml, images:allImages, featured: this.article.featured});
 			$http.post('/article', data).
 			success(function(data, status, headers, config)
 			{
@@ -49,7 +49,7 @@ controller('LayoutController', ['$scope', function($scope){
   		}
   		else 
   		{
-  			alert("Le titre doit être saisie");
+  			alert("Le titre doit être saisi.");
   		}
 	};
 

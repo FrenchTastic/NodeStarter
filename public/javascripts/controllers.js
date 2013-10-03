@@ -56,7 +56,6 @@ controller('LayoutController', ['$scope', function($scope){
 			console.log("les articles sont rétournés :" );
 			$scope.articles = "";
 			$scope.articles = data;
-
 			var timer = setTimeout(function(){
 		       $scope.$apply(function() {
 		       	$scope.pagVisibility = true;

@@ -13,7 +13,8 @@
 						.input-group
 							input.form-control(type="url",placeholder="Url de l'image",id="featuredUrl", ng-model="article.featured",required)
 							span.input-group-btn
-								button.btn.btn-default(type="button", ng-click="loadFeaturedImage()") Go!
+								button.btn.btn-default(type="button",  add-preview-image) Go! 
+								//ng-click="loadFeaturedImage()"
 				br
 				h4(style="color: #7A7876;") Contenu de l'article
 				textarea(ck-editor,ng-model="articleHtml", name="editor1", required )

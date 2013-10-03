@@ -96,12 +96,22 @@ directive('editTweet', function() {
 		}
 	};
 })
-.directive('articleFull', function(){
+.directive('addPreviewImage', function(){
 	return {
-		restrict: 'E,A',
-		templateUrl: 'articleFull.html',
+		restrict: 'A',
 		//scope: { articles: '=rpArticle'},
 		link: function(scope, element, attr) {
+			element.bind('click', function(){
+				var imgUrl = element.parent().parent().find('input[type=url]').val();
+				if(imgUrl && ((imgUrl.substring(0,7) == "http://") || (imgUrl.substring(0,4) == "www.")) )
+				{
+					element.parent().parent().parent().append('<img id="previewImage" src="'+ imgUrl + '" alt="Preview Image" style="width:128px; height:128px;" />');
+				}
+				else
+				{
+					alert("Le champs doit contenir l'url d'une image.");
+				}
+			})
 		}
 	};
 })
