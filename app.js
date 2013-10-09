@@ -15,7 +15,9 @@ var express = require('express')
 var app = express();
 var GOOGLE_CLIENT_ID = "YOURID";
 var GOOGLE_CLIENT_SECRET ="YOURSECRET";
-mongoose.connect('mongodb://localhost');
+var mongoOptions = { server : { auto_reconnect: true }};
+
+mongoose.connect('mongodb://localhost', mongoOptions);
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -128,12 +130,14 @@ app.get('/users', user.list);
 app.get('/api/someJson', api.get);
 app.get('/api/articles', api.articles);
 app.get('/api/article', api.article);
+app.get('/api/countArticles', api.countArticles);
 app.get('/articlesList', api.articlesList)
 app.get('/connected', routes.connected);
 app.get('/pardon', routes.admin);
 app.get('/pardon/partials/:name', routes.partials);
 app.get('/auth/google',passport.authenticate('google'));
 app.post('/api/tweet',api.postTweet);
+app.get('/api/artByPage', api.getNumberOfArticlesByPage);
 
 
 app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/partials/test' }),
@@ -143,6 +147,7 @@ app.get('/auth/google/callback', passport.authenticate('google', { failureRedire
     });
 
 app.post('/article', api.postArticle);
+app.post('/api/artByPage', api.setNumberOfArticlesByPage);
 
 app.post('/articleee', function(req, res){
 	console.log("patate " + req.params[0]);

@@ -22,7 +22,7 @@
 								//-img.img-responsive(ng-src='{{image}}', alt='Responsive image')
 			div(data-rp-article='articles')
 			.col-xs-12.col-sm-12.text-center(id='pagination', ng-show='pagVisibility')
-				pagination(num-pages='noOfPages', current-page='currentPage', on-select-page='setPage(page)')
+				pagination(num-pages='noOfPages', direction-links='false', boundary-links='true', current-page='currentPage', on-select-page='setPage(page)')
 			//-ul.pagination(num-pages='noOfPages', current-page='currentPage')
 				//-li(ng-repeat='page in pages', ng-class='{active: page.active, disabled: page.disabled}')
 					//-a(ng-click='selectPage(page.number)')

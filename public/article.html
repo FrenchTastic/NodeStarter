@@ -1,13 +1,15 @@
-<div ng-repeat="article in articles  | filter:search" ng-animate="{enter: 'animate-enter'}" class="col-12 col-sm-12 col-lg-12 divHeader">
-	<h3 style="color: #7A7876;">
-		{{article.title}}
-	</h3>
-	<hr class="fineLine" />
-	<div class="divContent box"><img class="img-responsive" src="{{article.images[0]}}" alt="responsive" />
-		{{article.text}}
-		<br />
-		<!--<button type="button" ng-click="detailPage({{article.articleNo}})" class="btn btn-primary pull-right" style="margin-top:5px;">Lire la suite....</button>-->
-		<a href="#/articles/{{article.articleNo}}" class="btn btn-primary pull-right" style="margin-top:5px;">Lire la suite....</a>
-		<div class="clearfix"></div>
+
+	<div  ng-repeat="article in articles  | filter:search" style="display:none;" class="col-12 col-sm-12 col-lg-12 divHeader">
+		<h3 style="color: #7A7876;">
+			{{article.title}}
+		</h3>
+		<hr class="fineLine" />
+		<!--<div class="divContent box"><img class="img-responsive" src="{{article.images[0]}}" alt="responsive" />-->
+		<div class="divContent box"><div class="col-4 col-sm-12 col-lg-4"><img class="img-responsive" src="{{article.featured}}" alt="responsive" /></div>
+			<div ng-bind-html-unsafe="article.text"></div>
+			<br />
+			<!--<button type="button" ng-click="detailPage({{article.articleNo}})" class="btn btn-primary pull-right" style="margin-top:5px;">Lire la suite....</button>-->
+			<a href="#/articles/{{article.articleNo}}" class="btn btn-primary pull-right" style="margin-top:5px;">Lire la suite....</a>
+			<div class="clearfix"></div>
+		</div>
 	</div>
-</div>

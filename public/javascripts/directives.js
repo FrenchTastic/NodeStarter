@@ -84,13 +84,15 @@ directive('editTweet', function() {
 			scope.$watch('articles', function(articles) {
 				//$("#pagination").css("display", "none");
 				//alert('boom');
-				//$("#pagination").show("slow");
+				//$("[data-rp-article='articles'] div").show("slow");
 				if(scope.articles !== undefined)
 				{
 					//var timer = setInterval(function(){
 				        //$("#pagination").show("slow");
 				    //}, 400);  
-					
+					$("[data-rp-article='articles'] div").fadeIn("slow", function() {
+    // Animation complete
+  });
 				}
 			})
 		}

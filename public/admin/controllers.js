@@ -7,7 +7,6 @@ controller('LayoutController', ['$scope', function($scope){
 }])
 .controller('AdminCtrl', ['$scope', '$http', function($scope, $http){
 	$scope.text = 'roger';
-	
 	$scope.submit = function() {
 		if(!this.articleForm.$invalid)
 		{
@@ -25,9 +24,8 @@ controller('LayoutController', ['$scope', function($scope){
 			{
 				allImages = [];
 			}
-			
-
-			var data = JSON.stringify({title:this.article.title, text:this.articleHtml, images:allImages, featured: this.article.featured});
+			//var data = JSON.stringify({title:this.article.title, text:this.articleHtml, images:allImages, featured: this.article.featured});
+			var data = JSON.stringify({title:this.article.title, text:this.articleHtml, featured: this.article.featured});
 			$http.post('/article', data).
 			success(function(data, status, headers, config)
 			{
@@ -39,7 +37,6 @@ controller('LayoutController', ['$scope', function($scope){
 		{
 			alert("Veuillez remplir tous les champs.");
 		}
-		
   	};
 
   	$scope.loadFeaturedImage = function(e){

@@ -11,37 +11,66 @@ controller('LayoutController', ['$scope', function($scope){
 	});
 }])
 .controller('IndexCtrl', ['$scope','$http', 'Articles', function($scope,$http, Articles) {
+	
+	/*var number = { 'articlesByPage' : 5 };
+	$http.post('/api/artByPage', number).success(function(data, status, headers, config){
+		if(status == 200)
+		{
+			articlesByPage = data;
+			alert(data);
+		}
+	});*/
 
     $scope.title = "Les nénuphars sont mes amis";
-		$scope.currentPage = 1;
-		$scope.pagVisibility = false;
-		//$scope.articles = Articles.getArticles($scope.currentPage);
-		$http.get('/api/articles?page=' + $scope.currentPage ).success(function(data, status, headers, config){
-			console.log("les articles sont rétournés :" );
-			$scope.articles = Articles.getShortenArticles(data);
-			//$scope.articles = data;
-			
-			var timer = setTimeout(function(){
-		       $scope.$apply(function() {
-		       	$scope.pagVisibility = true;
-		       });
-		    }, 600);
-		});
+	$scope.currentPage = 1;
+	$scope.pagVisibility = false;
+	//$scope.articles = Articles.getArticles($scope.currentPage);
+	$http.get('/api/articles?page=' + $scope.currentPage ).success(function(data, status, headers, config){
+		console.log("les articles sont rétournés :" );
+		$scope.articles = Articles.getShortenArticles(data);
+		//$scope.articles = data;
 		
-		$scope.changeText = function()
+		var timer = setTimeout(function(){
+	       $scope.$apply(function() {
+	       	$scope.pagVisibility = true;
+	       });
+	    }, 600);
+	});
+
+	var articlesByPage = 1;
+	$http.get('/api/artByPage').success(function(data, status, headers, config){
+		if(status == 200)
 		{
-			$scope.title = $scope.steack;
-		};
+			articlesByPage = data;
+		}
+	});
+
+	var numberOfArticles = 1;
+
+	$http.get('/api/countArticles').success(function(data, status, headers, config){
+		if(status == 200)
+		{
+			$scope.noOfPages = Math.ceil(data / articlesByPage);
+		}
+	});
+	
+	$scope.changeText = function()
+	{
+		$scope.title = $scope.steack;
+	};
+	
+	$scope.edit = function(){
 		
-		$scope.edit = function(){
-			
-		};
-		
+	};
+	
 	$scope.sendTweet = function(e){
 		$scope.tweetMode = false;
 	};
 
-	$scope.noOfPages = 7;
+
+
+
+	
 
 	$scope.detailPage = function(articleNo)
 	{
@@ -55,7 +84,7 @@ controller('LayoutController', ['$scope', function($scope){
 		$http.get('/api/articles?page=' + pageNo).success(function(data, status, headers, config){
 			console.log("les articles sont rétournés :" );
 			$scope.articles = "";
-			$scope.articles = data;
+			$scope.articles = Articles.getShortenArticles(data);
 			var timer = setTimeout(function(){
 		       $scope.$apply(function() {
 		       	$scope.pagVisibility = true;

@@ -33,6 +33,11 @@ var kittySchema = mongoose.Schema({
 	name: String
 });
 
+var settingsSchema = mongoose.Schema({
+	 articlesByPage: Number
+});
+
+
 var articlesSchema = mongoose.Schema({
 	articleNo: Number,
 	title: String,
@@ -43,6 +48,7 @@ var articlesSchema = mongoose.Schema({
 });
 
 var Article = mongoose.model('Article', articlesSchema);
+var Setting = mongoose.model('Setting', settingsSchema);
 
 kittySchema.methods.speak = function () {
 	var greeting = this.name
@@ -56,16 +62,49 @@ exports.get = function (req, res) {
   res.json(data);
 };
 
+exports.setNumberOfArticlesByPage = function(req, res) {
+	Setting.findOne({}, function(err, number){
+		if(number == null)
+		{
+			number = new Setting({articlesByPage: req.body.articlesByPage});
+		}
+		else
+		{
+			number.articlesByPage = req.body.articlesByPage;
+		}
+		number.save();
+		res.send(200);
+	})
+};
+
+exports.getNumberOfArticlesByPage = function(req, res) {
+	Setting.findOne({ articlesByPage: { $exists: true } }, function(err, setting){
+		res.json(setting.articlesByPage);
+	})
+};
+
 exports.articles = function(req, res) {
 	var mongoArticles;
 	var numArticles;
+	Setting.findOne({ articlesByPage: { $exists: true } }, function(err, number){
+		console.log(number + 'toto et comp ');
+	});
+
+	var articleByPage = 4;
 	if(req.query.page)
 	{
-		var pageToSkip = req.query.page - 1;
-		Article.find({}, null, { skip: pageToSkip, limit: 1}, function (err, articles) {
+		var pageToSkip = (req.query.page - 1) * articleByPage;
+		Article.find({}, null, { skip: pageToSkip, limit: articleByPage}, function (err, articles) {
 			res.json(articles);
 		});
 	}
+};
+
+exports.countArticles = function(req, res) {
+	Article.count({}, function(err, count){
+		console.log('il y a %d articles.', count);
+		res.json(count);
+	})
 };
 
 exports.article = function(req, res) {
