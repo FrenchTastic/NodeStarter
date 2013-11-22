@@ -29,15 +29,16 @@ html
             .form-group
               input.form-control.col-lg-8(ng-model='search.title' ,type='text', placeholder='Search', style='margin-left:10px')
           if !user
-            .pull-right(style='width:280px;height:42px;border-radius:5px;margin-top:4px;border:2px dashed #932927;background-color:#D43F3A;')
-              div(style='font-size:16px;margin-top:11px;margin-left:4px;color:white;float:left;') Sign In :
-              a.pull-right.btn.btn-success(data-toggle='modal', href='#myModal', style='margin-right:4px;') Modal GO
-              a.pull-right.btn.btn-success(data-toggle='modal', href='/auth/google', style='margin-right:4px;') Google
+            ul.nav.navbar-nav.navbar-right Sign In : 
+              a.btn.btn-success.navbar-btn(type='button', data-toggle='modal', href='#myModal', style='margin-right:4px;') Modal GO
+              a.btn.btn-success.navbar-btn(data-toggle='modal', href='/auth/google', style='margin-right:4px;') Google
+
+            //.pull-right(style='width:280px;height:42px;border-radius:5px;margin-top:4px;border:2px dashed #932927;background-color:#D43F3A;')
+
             // a.pull-right.btn.btn-primary.navbar-btn(data-toggle='modal', href='#myModal') Modal GO
             // a.pull-right.btn.btn-danger.navbar-btn(href='/auth/google') Sign In
           else
             ul.nav.navbar-nav.pull-right
               li
                 a(href='#') Bonjour, #{user.displayName }
-    
     block content
