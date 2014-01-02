@@ -79,7 +79,15 @@ exports.setNumberOfArticlesByPage = function(req, res) {
 
 exports.getNumberOfArticlesByPage = function(req, res) {
 	Setting.findOne({ articlesByPage: { $exists: true } }, function(err, setting){
-		res.json(setting.articlesByPage);
+		if (setting == null)
+		{ 
+			res.json(4);
+		}
+		else
+		{
+			res.json(setting.articlesByPage);
+		}
+		
 	})
 };
 
@@ -87,6 +95,7 @@ exports.articles = function(req, res) {
 	var mongoArticles;
 	var numArticles;
 	Setting.findOne({ articlesByPage: { $exists: true } }, function(err, number){
+		if (err) return handleError(err);
 		console.log(number + 'toto et comp ');
 	});
 
@@ -121,7 +130,10 @@ exports.article = function(req, res) {
 exports.postArticle = function (req, res) {
 	var nextArticle = 1;
 	Article.findOne().sort('-articleNo').exec(function(err, doc){
-		nextArticle = doc.articleNo + 1;
+		if(doc != null)
+		{
+			nextArticle = doc.articleNo + 1;
+		}
 		var newArticle = new Article({articleNo: nextArticle, text: req.body.text, title: req.body.title, featured: req.body.featured, date: new Date });
 		newArticle.save(function(err) {console.log(err)});
 	});
