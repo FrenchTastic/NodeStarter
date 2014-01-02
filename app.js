@@ -16,6 +16,7 @@ var app = express();
 var GOOGLE_CLIENT_ID = "YOURID";
 var GOOGLE_CLIENT_SECRET ="YOURSECRET";
 var mongoOptions = { server : { auto_reconnect: true }};
+app.use(express.static(__dirname + '/../iisnode'));
 
 //mongoose.connect('mongodb://localhost', mongoOptions);
 mongoose.connect(process.env.CUSTOMCONNSTR_MONGOLAB_URI, mongoOptions);
