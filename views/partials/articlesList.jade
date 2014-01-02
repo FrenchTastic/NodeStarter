@@ -1,0 +1,16 @@
+.container(style="background-color:white")
+	h4 Liste des articles
+	.row
+		.col-xs-12.col-sm-12
+			.table-responsive
+				table.table.table-striped
+					thead
+						tr
+							th Numéro
+							th titre
+					tbody
+						tr(ng-repeat="article in articles")
+							td {{ article.articleNo }}
+							td {{ article.title }}
+
+		

@@ -17,7 +17,8 @@ var GOOGLE_CLIENT_ID = "YOURID";
 var GOOGLE_CLIENT_SECRET ="YOURSECRET";
 var mongoOptions = { server : { auto_reconnect: true }};
 
-mongoose.connect('mongodb://localhost', mongoOptions);
+//mongoose.connect('mongodb://localhost', mongoOptions);
+mongoose.connect(process.env.CUSTOMCONNSTR_MONGOLAB_URI, mongoOptions);
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
