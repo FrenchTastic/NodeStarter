@@ -10,7 +10,8 @@
     "express": "3.3.0",
     "jade": "*",
 		"passport": "latest",
-		"passport-google-oauth":"latest"
+		"passport-google-oauth":"latest",
+		"mongoose": "latest"
   },
   "author":"FrenchTastic"
 }
